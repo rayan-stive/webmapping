@@ -1,0 +1,340 @@
+#
+# Start of map file
+#
+#
+MAP
+NAME "cgi-demo"
+STATUS ON
+SIZE 400 300
+SYMBOLSET "../etc/symbols.txt"
+## ESPG:3978 extents:
+EXTENT -2200000 -712631 3072800 3840000
+UNITS METERS
+SHAPEPATH "../data"
+IMAGECOLOR 255 255 255
+FONTSET "../etc/fonts.txt"
+
+
+#
+# Start of web interface definition
+#
+WEB
+  MINSCALEDENOM 2000000
+  MAXSCALEDENOM 50000000
+
+  IMAGEPATH "C:/PROGRA~2/ms4w/tmp/ms_tmp/" 
+  IMAGEURL "/ms_tmp/"
+  TEMPLATE "../htdocs/viewer-template.html"  
+END
+
+#
+# Output projection
+#
+PROJECTION
+  "init=epsg:3978"
+END
+
+#
+# Start of legend
+#
+LEGEND
+  KEYSIZE 18 12
+  LABEL
+    TYPE BITMAP
+    SIZE MEDIUM
+    COLOR 0 0 89
+  END
+  STATUS ON
+  TEMPLATE "../htdocs/html-legend.html"  
+END
+
+#
+# Start of scalebar
+#
+SCALEBAR
+  IMAGECOLOR 255 255 255
+  LABEL
+    COLOR 0 0 0 
+    SIZE SMALL
+  END
+  SIZE 200 5
+  COLOR 255 255 255
+  BACKGROUNDCOLOR 0 0 0
+  OUTLINECOLOR 0 0 0
+  UNITS kilometers
+  INTERVALS 5
+  STATUS ON
+END
+
+
+QUERYMAP
+  STYLE HILITE
+  COLOR 255 0 0
+END
+
+
+#
+# Start of layer definitions
+#
+
+
+LAYER
+  NAME "bathymetry"
+  STATUS ON  
+  METADATA
+    "wms_title" "Elevation/Bathymetry"
+  END
+  TYPE RASTER
+  DATA "bath_mapserver.tif"
+  PROJECTION
+    "init=epsg:3978"
+  END
+END
+
+
+LAYER
+  NAME "land_fn"
+  STATUS ON  
+  METADATA
+    "wms_title"  "Foreign Lands"
+  END
+  TYPE POLYGON
+  DATA "land_fn.shp"
+  PROJECTION
+    "init=epsg:3978"
+  END
+  CLASS
+    NAME "Foreign Lands"
+    STYLE
+      COLOR 240 240 240
+      OUTLINECOLOR 199 199 199
+    END
+  END
+END # layer
+
+LAYER
+  NAME "park"
+  STATUS ON  
+  METADATA
+    "wms_title"    "Parks"
+  END
+  TYPE POLYGON
+  DATA "park.shp"
+  PROJECTION
+    "init=epsg:3978"
+  END
+  DUMP TRUE  # For GML FeatureInfo output
+  CLASS
+    NAME "Parks"
+    STYLE
+      COLOR 200 255 0
+      OUTLINECOLOR 120 120 120
+    END
+  END
+  TEMPLATE "../htdocs/query-templates/parks.html"
+  HEADER "../htdocs/query-templates/parks_header.html"
+  FOOTER "../htdocs/query-templates/parks_footer.html"
+  TOLERANCE 5
+END # Layer
+
+LAYER
+  NAME "drain_fn"
+  STATUS ON  
+  METADATA
+    "wms_title"  "Water"
+  END
+  TYPE POLYGON
+  DATA "drain_fn.shp"
+  PROJECTION
+    "init=epsg:3978"
+  END
+  CLASSITEM "Poly_featu" 
+  CLASS
+    EXPRESSION /16|21/  
+    NAME "Foreign Water"
+    STYLE
+      COLOR 225 249 255
+      OUTLINECOLOR 186 234 245
+    END
+  END
+END # layer
+
+LAYER
+  NAME "drainage"
+  STATUS ON
+  METADATA
+    "wms_title"  "Drainage"
+  END
+  TYPE POLYGON
+  DATA "drainage.shp"
+  PROJECTION
+    "init=epsg:3978"
+  END
+  CLASSITEM "Poly_featu" 
+  CLASS
+    EXPRESSION "0"  
+    NAME "Water"
+    STYLE
+      COLOR 225 249 255
+      OUTLINECOLOR 186 234 245
+    END
+  END
+END # layer
+
+LAYER
+  NAME "prov_bound"
+  STATUS ON  
+  METADATA
+    "wms_title"  "Province"
+  END
+  TYPE LINE
+  DATA "province.shp"
+  PROJECTION
+    "init=epsg:3978"
+  END
+  CLASS
+    NAME "Province"
+    STYLE
+      COLOR 120 120 120
+    END
+  END
+END # layer
+
+LAYER
+  NAME "fedlimit"
+  STATUS ON  
+  METADATA
+    "wms_title"  "Federal Limit"
+  END
+  TYPE LINE
+  DATA "fedlimit.shp"
+  PROJECTION
+    "init=epsg:3978"
+  END
+  CLASS
+    NAME "Federal Limit"
+    STYLE
+      SYMBOL 3  
+      COLOR 0 119 255
+    END
+  END
+
+END # Layer
+
+LAYER
+  NAME "rail"
+  STATUS ON  
+  METADATA
+    "wms_title"  "Railroads"
+  END
+  TYPE LINE
+  DATA "rail.shp"
+  PROJECTION
+    "init=epsg:3978"
+  END
+  CLASS
+    NAME "Railroads"
+    STYLE
+      SYMBOL 0  
+      COLOR 168 0 184
+    END
+  END
+END # Layer
+
+LAYER
+  NAME "road"
+  STATUS ON  
+  METADATA
+    "wms_title"  "Roads"
+  END
+  TYPE LINE
+  DATA "road.shp"
+  PROJECTION
+    "init=epsg:3978"
+  END
+  CLASS
+    NAME "Roads"
+    STYLE
+      SYMBOL 0 
+      COLOR 220 0 0
+    END
+  END
+END # Layer
+
+LAYER
+  NAME "popplace"
+  STATUS ON  
+  METADATA
+    "wms_title"    "Cities"
+  END
+  TYPE POINT
+  DATA "popplace.shp"
+  PROJECTION
+    "init=epsg:3978"
+  END
+  DUMP TRUE  # For GML FeatureInfo output
+  LabelItem "Name"  
+  CLASSITEM "Capital" 
+  CLASS
+    NAME "Capital Cities"  
+    EXPRESSION "1"  
+    STYLE
+      SYMBOL 2
+      SIZE 8
+      COLOR 0 0 0            
+    END
+    LABEL
+      COLOR  255 0 0
+      FONT sans-italic
+      TYPE truetype
+      SIZE 8
+      POSITION AUTO     
+      PARTIALS FALSE
+      OUTLINECOLOR 255 255 255      
+    END 
+  END
+  CLASS
+    NAME "Cities"  
+    EXPRESSION /2|3/
+    STYLE
+      SYMBOL 7
+      SIZE 6
+      COLOR 0 0 0      
+    END
+    LABEL
+     COLOR  0 0 0
+     FONT sans
+     TYPE truetype
+     SIZE 8
+     POSITION AUTO      
+     PARTIALS FALSE
+     OUTLINECOLOR 255 255 255     
+    END 
+  END
+  TOLERANCE 5
+  TEMPLATE "../htdocs/query-templates/popplace.html"
+  HEADER "../htdocs/query-templates/popplace_header.html"
+  FOOTER "../htdocs/query-templates/popplace_footer.html"
+END # Layer
+
+LAYER
+  NAME "grid"
+  STATUS ON  
+  METADATA
+    "wms_title"  "Grid"
+  END
+  TYPE LINE
+  DATA "grid"
+  PROJECTION
+    "init=epsg:3978"
+  END
+  CLASS
+    NAME "Graticule"
+    STYLE
+      COLOR 0 0 0
+    END
+  END
+END # Layer
+
+
+END # Map File

@@ -1,0 +1,67 @@
+/*
+ Description:  Simple WMS service to display on MS4W localhost ( http://127.0.0.1 )
+ Data source:  NaturalEarth dataset, in SpatiaLite format.
+ Other notes:  Open this mapfile in Notepad++, and use the color syntax file
+               from https://ms4w.com/trac/wiki/Notepad++MapServerStyle
+ Author:       Jeff McKenna, GatewayGeo, info@gatewaygeomatics.com
+ Last updated: 2021-07-16
+*/
+
+MAP
+NAME "ms4w-wms-demo"
+STATUS ON
+SIZE 400 300
+SYMBOLSET "../../../etc/symbols.txt"
+## EPSG:4326 extents:
+EXTENT -180 -90 180 90
+UNITS DD
+SHAPEPATH "../data"
+IMAGECOLOR 255 255 255
+FONTSET "../../../etc/fonts.txt"
+MAXSIZE 4096
+
+WEB
+  IMAGEPATH "/ms4w/tmp/ms_tmp/" 
+  IMAGEURL "/ms_tmp/"
+  METADATA
+    "wms_title"   		    "MS4W Demo WMS Server"
+    "wms_onlineresource" 	"http://127.0.0.1/cgi-bin/mapserv.exe?MAP=/ms4w/apps/openlayers-6.6.1/examples/map/wms-server.map"
+    "wms_srs"   		    "EPSG:4326 EPSG:4269 EPSG:3857"
+    "wms_feature_info_mime_type" "text/plain"
+    "wms_abstract"      	"This demonstration server was setup by GatewayGeo (http://gatewaygeomatics.com/) and is powered by MS4W (http://ms4w.com)."
+    "ows_enable_request" 	"*"  
+  END
+END
+
+PROJECTION
+  "init=epsg:4326"
+END
+
+#
+# Start of layer definitions
+#
+
+LAYER
+  NAME "countries"
+  METADATA
+    "wms_title"  	"Natural Earth Countries (1:110m)"
+    "wms_include_items" "all"
+  END
+  TYPE POLYGON
+  STATUS ON
+  # data is in the Spatialite format
+  CONNECTIONTYPE OGR
+  CONNECTION "spatialite/countries.db"
+  DATA "countries"
+  PROJECTION
+    "init=epsg:4326"
+  END
+  CLASS
+    NAME "Countries"
+    COLOR 240 240 240
+    OUTLINECOLOR 199 199 199
+  END
+  TEMPLATE "ttt.html"
+END # layer
+
+END # Map File

@@ -1,0 +1,97 @@
+MAP
+	INCLUDE '../../geomoose_globals.map'
+
+	WEB
+		METADATA
+			'ows_title' 'Maps Tsianolondroa'
+			INCLUDE '../../common_metadata.map'
+            'wfs_getfeature_formatlist' 'gml,geojson'
+		END
+	END
+
+    DEBUG 5
+
+	LAYER
+		NAME batiment
+		STATUS ON
+
+		METADATA
+			'ows_title' 'Batiment Polygons'
+			'ows_include_items' 'all'
+			'gml_include_items' 'all'
+		END
+
+		TYPE POLYGON
+		DATA './batiment.shp'
+		#FILTER ([PARC_CODE] == 1)
+
+		PROJECTION
+			'init=epsg:4326'
+		END
+
+		CLASS
+			NAME 'batiment'
+			STYLE
+				WIDTH 5
+				COLOR 232 223 0
+				OUTLINECOLOR 0 0 0
+			END
+
+			LABEL
+				TYPE TRUETYPE
+				FONT vera_sans
+				SIZE 8
+				ANTIALIAS TRUE
+				COLOR 0 0 0
+				OUTLINECOLOR 0 0 0
+				BUFFER 4
+				MINFEATURESIZE auto
+				PARTIALS FALSE
+				POSITION cc
+			END
+		END
+
+		TEMPLATE 'dummy'
+	END
+
+	LAYER
+		NAME route
+		STATUS ON
+		
+		METADATA
+			'ows_title' 'Route lines'
+			'ows_include_items' 'all'
+			'gml_include_items' 'all'
+		END
+
+		TYPE LINE
+		DATA './Route.shp'
+		#FILTER ([PARC_CODE] == 1)
+
+		PROJECTION
+			'init=epsg:4326'
+		END
+		CLASS
+			NAME 'route'
+			STYLE
+				WIDTH 3
+				COLOR 192 192 192
+				OUTLINECOLOR 128 128 128
+			END
+
+			LABEL
+				TYPE TRUETYPE
+				FONT vera_sans
+				SIZE 8
+				ANTIALIAS TRUE
+				COLOR 0 0 0
+				OUTLINECOLOR 254 254 200
+				BUFFER 4
+				MINFEATURESIZE auto
+				PARTIALS FALSE
+				POSITION cc
+			END
+		END
+		TEMPLATE 'dummy'
+	END
+END ## end Map

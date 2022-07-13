@@ -1,0 +1,29 @@
+<html>
+<head><title>CGI Viewer</title></head>
+<body bgcolor="#FFFFFF">
+
+<center><h2>MapServer - CGI Viewer</h2></center>
+<p><hr><p>
+Click on the initialize button to start the demo.
+<p>
+This is an old viewer, but it is still an excellent way to learn MapServer CGI mode, and also
+display accurate MapServer scale values, to use in your mapfile.  Just modify this mapfile to
+include your own data: \ms4w\apps\cgi-viewer\map\cgi-demo.map
+<p>
+The data and mapfile was put together originally by Jeff McKenna back in 2001 !
+
+<form method=GET action="/cgi-bin/mapserv.exe">
+
+<input type="hidden" name="map" value="C:/PROGRA~2/ms4w/apps/cgi-viewer/map/cgi-demo.map">
+<input type="hidden" name="layers" value="all">
+<input type="hidden" name="zoomsize" value=2>
+<input type="hidden" name="zoomdir" value=1>
+<input type="hidden" name="map_size" value="600 400">
+
+<center><input type="submit" value="Initialize"></center>
+
+</form>
+
+<p><hr><p>
+
+</body></html>

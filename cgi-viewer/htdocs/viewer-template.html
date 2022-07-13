@@ -1,0 +1,73 @@
+<!-- MapServer Template -->
+<html>
+<head><title>CGI Viewer</title></head>
+<body bgcolor=#FFFFFF>
+
+<center><h1>MapServer CGI Viewer</h1></center>
+<hr>
+<form method=GET action="/cgi-bin/mapserv.exe">
+
+<center>
+<table border=0 cellspacing=0 cellpadding=4 bgcolor="#FFFFFF">
+<tr>
+<td valign="top" align=center>
+  <table cellpadding="0" cellspacing="0" border="0">
+    <tr><td colspan="2"><INPUT NAME="img" TYPE="image" SRC="[img]" width=[mapwidth] height=[mapheight] border=0></td></tr>
+    <tr>
+      <td>&nbsp;<font size=-1 face="arial,helvetica" color="#000000"><b>Powered by MapServer</b></font></td>
+      <td align="right"><img src="[scalebar]"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>MapServer Scale 1:[scaledenom]</td>
+    </tr>
+  </table>
+</td>
+<td valign="top" bgcolor=#ffffff>
+  <table cellpadding="5" cellspacing="0" border="0" bgcolor="#ffffff">
+    <tr><td>
+      <center><input type="submit" value="Refresh/Query"></center>
+      <p>
+
+      <input type="radio" name="mode" value="browse" checked> <b>Browse map</b><br>
+      <input type="radio" name="mode" value="query"> <b>Query feature</b><br>
+      <input type="radio" name="mode" value="nquery"> <b>Query multiple features</b>
+
+      <hr>
+
+      <p>
+
+      <p>
+      Zoom In <input type=radio name=zoomdir value=1 [zoomdir_1_check]>
+      Zoom Out <input type=radio name=zoomdir value=-1 [zoomdir_-1_check]>
+      Pan <input type=radio name=zoomdir value=0 [zoomdir_0_check]>
+      <p>
+      Zoom Size <input type=text name=zoomsize size=4 value=[zoomsize]>
+    </td></tr>
+    <tr><td>
+      <b>Legend</b>
+    </tr></td>
+    <tr><td>
+      [legend]
+    </tr></td>
+    </table>
+
+  </td></tr>
+</table>
+</center>
+
+<input type="hidden" name="imgxy" value="299.5 299.5">
+<input type="hidden" name="imgext" value="[mapext]">
+<input type="hidden" name="map" value="[map]">
+<input type=hidden name=map_size value="[map_size]">
+<input type="hidden" name="savequery" value="true">
+<input type="hidden" name="mapext" value="shapes">
+<input type="hidden" name="layers" value="all">
+
+</form>
+
+<p><hr>
+</body></html>
+

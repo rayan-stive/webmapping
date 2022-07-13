@@ -1,0 +1,235 @@
+MAP
+	INCLUDE '../../geomoose_globals.map'
+
+	WEB
+		METADATA
+			'ows_title' 'Maps Tsianolondroa'
+			INCLUDE '../../common_metadata.map'
+            'wfs_getfeature_formatlist' 'gml,geojson'
+		END
+	END
+
+    DEBUG 5
+
+	LAYER
+		NAME batiment
+		STATUS ON
+
+		METADATA
+			'ows_title' 'Batiment Polygons'
+			'ows_include_items' 'all'
+			'gml_include_items' 'all'
+		END
+
+		TYPE POLYGON
+		DATA './batiment.shp'
+		#FILTER ([PARC_CODE] == 1)
+
+		PROJECTION
+			'init=epsg:4326'
+		END
+
+		CLASS
+			NAME 'batiment'
+			STYLE
+				WIDTH 2
+				COLOR 232 223 0
+				OUTLINECOLOR 0 0 0
+			END
+
+			LABEL
+				TYPE TRUETYPE
+				FONT vera_sans
+				SIZE 8
+				ANTIALIAS TRUE
+				COLOR 0 0 0
+				OUTLINECOLOR 0 0 0
+				BUFFER 4
+				MINFEATURESIZE auto
+				PARTIALS FALSE
+				POSITION cc
+			END
+		END
+
+		TEMPLATE 'dummy'
+	END
+
+	LAYER
+		NAME route
+		STATUS ON
+		
+		METADATA
+			'ows_title' 'Route lines'
+			'ows_include_items' 'all'
+			'gml_include_items' 'all'
+		END
+
+		TYPE LINE
+		DATA './Route.shp'
+		#FILTER ([PARC_CODE] == 1)
+
+		PROJECTION
+			'init=epsg:4326'
+		END
+		CLASS
+			NAME 'route'
+			STYLE
+				WIDTH 3
+				COLOR 0 0 0 
+				OUTLINECOLOR 128 128 128
+			END
+
+			LABEL
+				TYPE TRUETYPE
+				FONT vera_sans
+				SIZE 8
+				ANTIALIAS TRUE
+				COLOR 0 0 0
+				OUTLINECOLOR 254 254 200
+				BUFFER 4
+				MINFEATURESIZE auto
+				PARTIALS FALSE
+				POSITION cc
+			END
+		END
+		TEMPLATE 'dummy'
+	END
+
+
+	LAYER
+		NAME vegetation
+		STATUS ON
+
+		METADATA
+			'ows_title' 'Vegetation Polygons'
+			'ows_include_items' 'all'
+			'gml_include_items' 'all'
+		END
+
+		TYPE POLYGON
+		DATA './vegetation.shp'
+		#FILTER ([PARC_CODE] == 1)
+
+		PROJECTION
+			'init=epsg:4326'
+		END
+
+		CLASS
+			NAME 'vegetation'
+			STYLE
+				WIDTH 2
+				COLOR 81 200 94
+				OUTLINECOLOR 0 0 0
+			END
+
+			LABEL
+				TYPE TRUETYPE
+				FONT vera_sans
+				SIZE 8
+				ANTIALIAS TRUE
+				COLOR 0 0 0
+				OUTLINECOLOR 0 0 0
+				BUFFER 4
+				MINFEATURESIZE auto
+				PARTIALS FALSE
+				POSITION cc
+			END
+		END
+
+		TEMPLATE 'dummy'
+	END
+
+
+	LAYER
+		NAME autre
+		STATUS ON
+
+		METADATA
+			'ows_title' 'Autre Polygons'
+			'ows_include_items' 'all'
+			'gml_include_items' 'all'
+		END
+
+		TYPE POLYGON
+		DATA './autre.shp'
+		#FILTER ([PARC_CODE] == 1)
+
+		PROJECTION
+			'init=epsg:4326'
+		END
+
+		CLASS
+			NAME 'autre'
+			STYLE
+				WIDTH 2
+				COLOR 255 51 85
+				OUTLINECOLOR 0 0 0
+			END
+
+			LABEL
+				TYPE TRUETYPE
+				FONT vera_sans
+				SIZE 8
+				ANTIALIAS TRUE
+				COLOR 0 0 0
+				OUTLINECOLOR 0 0 0
+				BUFFER 4
+				MINFEATURESIZE auto
+				PARTIALS FALSE
+				POSITION cc
+			END
+		END
+
+		TEMPLATE 'dummy'
+	END
+
+
+	LAYER
+		NAME fond
+		STATUS ON
+
+		METADATA
+			'ows_title' 'Fond Polygons'
+			'ows_include_items' 'all'
+			'gml_include_items' 'all'
+		END
+
+		TYPE POLYGON
+		DATA './fond.shp'
+		#FILTER ([PARC_CODE] == 1)
+
+		PROJECTION
+			'init=epsg:4326'
+		END
+
+		CLASS
+			NAME 'fond'
+			STYLE
+				WIDTH 2
+				COLOR 239 246 213
+				OUTLINECOLOR 0 0 0
+			END
+
+			LABEL
+				TYPE TRUETYPE
+				FONT vera_sans
+				SIZE 8
+				ANTIALIAS TRUE
+				COLOR 0 0 0
+				OUTLINECOLOR 0 0 0
+				BUFFER 4
+				MINFEATURESIZE auto
+				PARTIALS FALSE
+				POSITION cc
+			END
+		END
+
+		TEMPLATE 'dummy'
+	END
+
+
+	
+END ## end Map
+
+
+# 239 246 213
