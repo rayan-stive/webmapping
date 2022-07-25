@@ -204,7 +204,7 @@ app.loadMapbook().then(function() {
     app.registerAction('findme', FindMeAction);
 
     app.registerAction('fullextent', ZoomToAction, {
-        extent: app.bboxToMeters(47.08, -21.46, 47.09, -21.45)
+        extent: app.bboxToMeters(47.07, -21.46, 47.09, -21.45)
     });
 
     app.add(gm3.components.Catalog, 'catalog');

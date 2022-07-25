@@ -168,7 +168,7 @@
     <toolbar>
         <tool name="fullextent" title="Zoom sur les couches" type="action"/>
         <!-- <tool name="measure" title="Measure" type="service"/> -->
-        <tool name="identify" title="Identifier" type="service"/>
+        <tool name="identify" title="Identify" type="service"/>
         <tool name="print" title="Imprimer" type="action"/>
         <tool name="reload" title="Redémarrer" type="action"/>
 
